@@ -1,0 +1,14 @@
+{
+    "cmd": ["python", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python",
+    "encoding":"utf-8",
+    "variants": 
+    [
+        {
+            "name": "Run", 
+            "shell": true,
+            "cmd" : ["start", "cmd", "/k", "python", "${file_path}/${file_base_name}.py"] 
+        }
+    ]
+}
