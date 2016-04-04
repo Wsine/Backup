@@ -133,6 +133,16 @@ img {
 	background-color: rgba(246, 255, 248, 0.69)!important;
 	line-height: 1.5em;
 }
+#cnblogs_post_body blockquote {
+	background: #f9f9f9;
+	border-left: 10px solid rgba(105, 162, 121, 0.46) !important;
+	margin: .5em 30px .5em 0;
+	padding: .5em 10px;
+	border-style: none;
+}
+#cnblogs_post_body blockquote p {
+	display: inline;
+}
 /*左边*/
 #sideBarMain {
 	padding:0 10px 0 0;
