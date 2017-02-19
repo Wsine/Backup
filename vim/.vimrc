@@ -14,7 +14,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'vim-scripts/AutoComplPop'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -152,6 +153,11 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 map <leader>t :NERDTreeToggle<CR>
+
+nnoremap <silent> + :call smooth_scroll#down(&scroll, 25, 2)<CR>
+nnoremap <silent> - :call smooth_scroll#up(&scroll, 25, 2)<CR>
+nnoremap <silent> <Space> :call smooth_scroll#down(&scroll, 25, 2)<CR>
+nnoremap <silent> <S-Space> :call smooth_scroll#up(&scroll, 25, 2)<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
