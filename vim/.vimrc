@@ -16,6 +16,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'vim-scripts/AutoComplPop'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -26,10 +30,6 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
-
-" Enable filetype plugins
-" filetype plugin on
-" filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -67,6 +67,9 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+" Enable status bar color
+set t_Co=256
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,18 +98,15 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
-
 " Be smart when using tabs ;)
 set smarttab
-
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
-
 " Linebreak on 500 characters
 set lbr
 set tw=500
-
+" Intelligence indent
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
@@ -114,16 +114,6 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -132,33 +122,33 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-set laststatus=1
+set laststatus=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
 " Fast saving
 nmap <leader>w :w<cr>
 " Fast quit
 nmap <leader>q :q<cr>
-" Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
+" Fast open file tree
 map <leader>t :NERDTreeToggle<CR>
-
-nnoremap <silent> + :call smooth_scroll#down(&scroll, 25, 2)<CR>
+" Smooth page scroll
+nnoremap <silent> = :call smooth_scroll#down(&scroll, 25, 2)<CR>
 nnoremap <silent> - :call smooth_scroll#up(&scroll, 25, 2)<CR>
 nnoremap <silent> <Space> :call smooth_scroll#down(&scroll, 25, 2)<CR>
-nnoremap <silent> <S-Space> :call smooth_scroll#up(&scroll, 25, 2)<CR>
-
+" Move in insert mode
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-e> <End>
+imap <C-a> <Home>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -169,7 +159,18 @@ func! DeleteTrailingWS()
     exe "normal `z"
 endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
-
+" Auto open file tree if enter a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin Setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDcommenter
+let g:NERDSpaceDelims=1
+let g:NERDCommentEmptyLines=1
+let g:NERDDefaultAlign='left'
+" Vim Airline themes
+let g:airline_theme='luna'
+let g:airline_powerline_fonts=1
