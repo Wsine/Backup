@@ -135,11 +135,15 @@ set laststatus=2
 map j gj
 map k gk
 " Fast saving
-nmap <leader>w :w<cr>
+nmap <leader>w :w<CR>
 " Fast quit
-nmap <leader>q :q<cr>
+nmap <leader>q :q<CR>
 " Fast open file tree
 map <leader>t :NERDTreeToggle<CR>
+" Fast Tab use
+noremap <silent><leader>bb :bnext<CR>
+noremap <silent><leader>bn :enew<CR>
+noremap <silent><leader>bd :bdelete<CR>
 " Smooth page scroll
 nnoremap <silent> = :call smooth_scroll#down(&scroll, 25, 2)<CR>
 nnoremap <silent> - :call smooth_scroll#up(&scroll, 25, 2)<CR>
@@ -149,6 +153,8 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-e> <End>
 imap <C-a> <Home>
+imap <M-f> <C-o>w
+imap <M-b> <C-o>b
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -174,3 +180,4 @@ let g:NERDDefaultAlign='left'
 " Vim Airline themes
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
