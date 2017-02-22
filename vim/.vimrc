@@ -137,7 +137,7 @@ map k gk
 " Fast saving
 nmap <leader>w :w<CR>
 " Fast quit
-nmap <leader>q :q<CR>
+nmap <leader>q :bufdo bd<CR>:q<CR>
 " Fast open file tree
 map <leader>t :NERDTreeToggle<CR>
 " Fast Tab use
@@ -155,6 +155,7 @@ imap <C-e> <End>
 imap <C-a> <Home>
 imap <M-f> <C-o>w
 imap <M-b> <C-o>b
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,7 +168,6 @@ endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
 " Auto open file tree if enter a directory
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
