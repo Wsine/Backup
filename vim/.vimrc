@@ -34,10 +34,15 @@ set history=700
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+" ignore case when searching unless exists one upper case
+set ignorecase
+set smartcase
+
+" Realtime searching
+set incsearch
+
+" hight light searching
+set hlsearch
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -67,8 +72,8 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" Enable status bar color
-set t_Co=256
+" Set cmd show
+set showcmd
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -76,6 +81,7 @@ set t_Co=256
 " Enable syntax highlighting
 syntax enable
 
+" Set colorscheme
 colorscheme desert
 set background=dark
 
@@ -84,6 +90,9 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+" Enable status bar color
+set t_Co=256
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -98,14 +107,18 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
+
 " Be smart when using tabs ;)
 set smarttab
+
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
 " Linebreak on 500 characters
 set lbr
 set tw=500
+
 " Intelligence indent
 set ai "Auto indent
 set si "Smart indent
@@ -131,23 +144,34 @@ set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
 " Fast saving
 nmap <leader>w :w<CR>
+
 " Fast quit
 nmap <leader>q :bufdo bd<CR>:q<CR>
+
 " Fast open file tree
 map <leader>t :NERDTreeToggle<CR>
+
 " Fast Tab use
 noremap <silent><leader>bb :bnext<CR>
 noremap <silent><leader>bn :enew<CR>
 noremap <silent><leader>bd :bdelete<CR>
+
 " Smooth page scroll
 nnoremap <silent> = :call smooth_scroll#down(&scroll, 25, 2)<CR>
 nnoremap <silent> - :call smooth_scroll#up(&scroll, 25, 2)<CR>
 nnoremap <silent> <Space> :call smooth_scroll#down(&scroll, 25, 2)<CR>
+
 " Move in insert mode
 imap <C-b> <Left>
 imap <C-f> <Right>
@@ -155,6 +179,10 @@ imap <C-e> <End>
 imap <C-a> <Home>
 imap <M-f> <C-o>w
 imap <M-b> <C-o>b
+
+" Clear highlight color
+nnoremap <Esc> :noh<Return><Esc>
+nnoremap <Esc>^[ <Esc>^[
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
@@ -166,6 +194,7 @@ func! DeleteTrailingWS()
     exe "normal `z"
 endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
+
 " Auto open file tree if enter a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
@@ -177,7 +206,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 let g:NERDSpaceDelims=1
 let g:NERDCommentEmptyLines=1
 let g:NERDDefaultAlign='left'
+
 " Vim Airline themes
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+
