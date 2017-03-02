@@ -20,6 +20,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -82,8 +83,8 @@ set showcmd
 syntax enable
 
 " Set colorscheme
-colorscheme desert
 set background=dark
+colorscheme desert
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -184,6 +185,10 @@ imap <M-b> <C-o>b
 nnoremap <Esc> :noh<Return><Esc>
 nnoremap <Esc>^[ <Esc>^[
 
+" Popup menu select
+inoremap <silent> <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
+inoremap <silent> <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,3 +217,8 @@ let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
+" Vim Cpp Highlight
+let g:cpp_class_scope_highlight=1
+let g:cpp_member_variable_highlight=1
+let g:cpp_experimental_simple_template_highlight=1
+let g:cpp_concepts_highlight=1
