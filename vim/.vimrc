@@ -150,6 +150,9 @@ set laststatus=2
 let mapleader = ","
 let g:mapleader = ","
 
+" Toggle paste mode
+set pastetoggle=<leader>p
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -164,7 +167,8 @@ nmap <leader>q :bufdo bd<CR>:q<CR>
 map <leader>t :NERDTreeToggle<CR>
 
 " Fast Tab use
-noremap <silent><leader>bb :bnext<CR>
+noremap <silent>K :bnext<CR>
+noremap <silent>J :bprevious<CR>
 noremap <silent><leader>bn :enew<CR>
 noremap <silent><leader>bd :bdelete<CR>
 
@@ -188,6 +192,9 @@ nnoremap <Esc>^[ <Esc>^[
 " Popup menu select
 inoremap <silent> <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
 inoremap <silent> <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
+
+" Visual Mode Search
+vnoremap // y/<C-R>"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
