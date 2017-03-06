@@ -167,10 +167,12 @@ nmap <leader>q :bufdo bd<CR>:q<CR>
 map <leader>t :NERDTreeToggle<CR>
 
 " Fast Tab use
-noremap <silent>K :bnext<CR>
-noremap <silent>J :bprevious<CR>
-noremap <silent><leader>bn :enew<CR>
-noremap <silent><leader>bd :bdelete<CR>
+noremap <silent> K :bnext<CR>
+noremap <silent> J :bprevious<CR>
+noremap <silent> <leader>bn :enew<CR>
+noremap <silent> <expr> <leader>bd
+    \ len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) >= 2 ?
+    \ ":bp\|bd #<CR>" : ":bd<CR>"
 
 " Smooth page scroll
 nnoremap <silent> = :call smooth_scroll#down(&scroll, 25, 2)<CR>
