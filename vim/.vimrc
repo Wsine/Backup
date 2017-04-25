@@ -14,13 +14,15 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'terryma/vim-smooth-scroll'
+" Plugin 'terryma/vim-smooth-scroll'
+Plugin 'lucasicf/vim-smooth-scroll'
 Plugin 'vim-scripts/AutoComplPop'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'vim-python/python-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -237,3 +239,7 @@ let g:cpp_class_scope_highlight=1
 let g:cpp_member_variable_highlight=1
 let g:cpp_experimental_simple_template_highlight=1
 let g:cpp_concepts_highlight=1
+
+" Vim Python Highlight
+let python_highlight_all=1
+
