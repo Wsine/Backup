@@ -103,6 +103,10 @@ set ffs=unix,dos,mac
 " Enable status bar color
 set t_Co=256
 
+" 80 characters limits
+highlight OverLength ctermbg=red ctermfg=white guibg=#59292
+autocmd FileType cpp,c,cxx,h,hpp,python,sh match OverLength /\%81v.\+/
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -110,6 +114,9 @@ set t_Co=256
 set nobackup
 set nowb
 set noswapfile
+
+" Set ctags file name, find recursely into parent directory
+set tags=tags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -201,7 +208,7 @@ nnoremap <Esc>^[ <Esc>^[
 
 " Popup menu select
 inoremap <silent> <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
-inoremap <silent> <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
+" inoremap <silent> <expr> <ESC> pumvisible() ? "\<C-E>" : "\<ESC>"
 
 " Visual Mode Search
 vnoremap // y/<C-R>"<CR>
