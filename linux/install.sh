@@ -3,6 +3,10 @@
 # set input from and output to
 GITHUB_DIR="https://raw.githubusercontent.com/Wsine/Backup/master/linux"
 OUTPUT_DIR="$HOME"
+HINTS="all done."
+if [ "$1" = "all" ]; then
+    DOWNLOAD_ALL=true
+fi
 
 function info() {
     local filename=$1
@@ -21,6 +25,24 @@ function check_env() {
     local execname=$1
     command -v $execname &> /dev/null || {
         error $execname
+    }
+}
+
+function check_sudo() {
+    sudo -n true &> /dev/null
+    if [ "$?" -eq 0 ] || [ "$?" -eq 1 ]; then
+        echo "sudo access granted"
+    else
+        echo "sudo access denied"
+        exit 1
+    fi
+}
+
+function check_for_install() {
+    local execname=$1
+    command -v $execname &> /dev/null || {
+        sudo apt-get install -y $execname
+        info $execname
     }
 }
 
@@ -62,6 +84,46 @@ function main() {
     # check path
     check_path "$OUTPUT_DIR"
 
+    # install environment
+    if [ "$DOWNLOAD_ALL" = true ]; then
+        check_sudo
+        check_env "apt-get"
+        check_env "git"
+        check_env "curl"
+        check_env "chsh"
+        check_env "fc-cache"
+
+        check_for_install "vim"
+        # install vundle
+        if [ ! -d "$OUTPUT_DIR/.vim/bundle/Vundle.vim/" ]; then
+            check_path "$OUTPUT_DIR/.vim/bundle"
+            git clone -q --depth=1 https://github.com/VundleVim/Vundle.vim.git  \
+                $OUTPUT_DIR/.vim/bundle/Vundle.vim
+        fi
+        # install fonts with powerline
+        if [ ! -d "$OUTPUT_DIR/.fonts" ]; then
+            check_path "$OUTPUT_DIR/.fonts"
+            check_for_download "vim" "PowerlineSymbols.otf" ".fonts"
+            fc-cache $OUTPUT_DIR/.fonts
+            check_path "$OUTPUT_DIR/.config/fontconfig/conf.d"
+            check_for_download "vim" "10-powerline-symbols.conf" \
+                                ".config/fontconfig/conf.d"
+        fi
+
+        check_for_install "zsh" \
+            && echo "change default shell to zsh, password required" \
+            && chsh -s $(which zsh) \
+            && HINTS+="\n logout and login to enable zsh environment"
+        # install oh-my-zsh
+        if [ ! -d "$OUTPUT_DIR/.oh-my-zsh/" ]; then
+            git clone -q --depth=1 https://github.com/robbyrussell/oh-my-zsh.git \
+                $OUTPUT_DIR/.oh-my-zsh
+        fi
+
+        # install dark theme
+        wget -q -O xt http://git.io/v3D8R && chmod +x xt && ./xt &> /dev/null && rm xt
+    fi
+
     # download file if needed
     check_for_download "bash" ".inputrc"
     check_for_download "bash" ".bashrc"
@@ -70,7 +132,11 @@ function main() {
     check_for_download "vim" ".vimrc"
     check_for_download "vim" "desert.vim" ".vim/colors"
     check_for_download "zsh" ".zshrc" "" "s/user_name/"$USER"/g"
+
+    # install vim plugin
+    if [ "$DOWNLOAD_ALL" = true ]; then
+        vim +PluginInstall +qall
+    fi
 }
 
-main && echo "all downloads success."
-
+main && echo -e "$HINTS"

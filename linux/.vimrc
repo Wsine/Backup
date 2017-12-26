@@ -6,6 +6,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -25,6 +26,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vim-python/python-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+endif
 filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
