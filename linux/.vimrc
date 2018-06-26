@@ -118,7 +118,7 @@ set nowb
 set noswapfile
 
 " Set ctags file name, find recursely into parent directory
-set tags=tags
+set tags=tags;
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
