@@ -6,8 +6,16 @@ guide:
 
 ```shell
 # only download static files
-wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash
-# download and install zsh and vim with plugins
+wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s bash
+
+wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s zsh
+
+wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s tmux
+
+wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s vim
+
+wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s theme
+
 wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s all
 ```
 
