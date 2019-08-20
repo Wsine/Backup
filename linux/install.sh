@@ -67,8 +67,10 @@ function download_theme() {
     check_env "wget"
 
     # install dark theme
+    # theme website: http://mayccoll.github.io/Gogh/
     if [ ! -n "$SSH_CONNECTION" ]; then
         wget -q -O xt http://git.io/v3D8R && chmod +x xt && ./xt &> /dev/null && rm xt
+        echo "please reopen the terminal to enjoy the new theme"
     fi
 }
 
@@ -80,16 +82,6 @@ function download_vim() {
     if [ ! -d "$OUTPUT_DIR/.vim/bundle/Vundle.vim/" ]; then
         git clone -q --depth=1 https://github.com/VundleVim/Vundle.vim.git  \
             $OUTPUT_DIR/.vim/bundle/Vundle.vim
-    fi
-
-    # install fonts with powerline
-    if [ ! -n "$SSH_CONNECTION" ]; then
-        check_env "fc-cache"
-        check_path "$OUTPUT_DIR/.fonts"
-        download ".fonts/PowerlineSymbols.otf"
-        fc-cache $OUTPUT_DIR/.fonts
-        check_path "$OUTPUT_DIR/.config/fontconfig/conf.d"
-        download ".config/fontconfig/conf.d/10-powerline-symbols.conf"
     fi
 
     check_path "$OUTPUT_DIR/.vim/colors"

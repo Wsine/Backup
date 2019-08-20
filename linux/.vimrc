@@ -14,7 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'terryma/vim-smooth-scroll'
 Plugin 'lucasicf/vim-smooth-scroll'
 Plugin 'vim-scripts/AutoComplPop'
@@ -106,7 +105,7 @@ set ffs=unix,dos,mac
 set t_Co=256
 
 " 80 characters limits
-highlight OverLength ctermbg=red ctermfg=white guibg=#59292
+highlight OverLength ctermbg=red ctermfg=white
 autocmd FileType cpp,c,cxx,h,hpp,python,sh match OverLength /\%81v.\+/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,7 +239,7 @@ let g:NERDDefaultAlign='left'
 
 " Vim Airline themes
 let g:airline_theme='luna'
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline#extensions#tabline#enabled=1
 
 " Vim Cpp Highlight

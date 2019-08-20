@@ -1,10 +1,14 @@
 # Linux
 
-there are some useful setting for linux user, and I also offer an install.sh file for it.
+there are some useful settings for linux user, and I also offer an `install.sh` script to quickly install.
 
 guide:
 
 ```shell
+# necessary packages
+sudo apt install git vim tmux zsh fonts-powerline
+# unnecessary packages
+sudo apt install htop tree ranger
 # only download static files
 wget -O - https://raw.githubusercontent.com/Wsine/Backup/master/linux/install.sh | bash -s bash
 
