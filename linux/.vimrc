@@ -214,6 +214,12 @@ inoremap <silent> <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
 " Visual Mode Search
 vnoremap // y/<C-R>"<CR>
 
+" Ctags search
+noremap <silent> <C-]> g<C-]>
+
+" Copy when selecting without yanking
+vnoremap p "_dP
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function, Command
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -250,4 +256,3 @@ let g:cpp_concepts_highlight=1
 
 " Vim Python Highlight
 let python_highlight_all=1
-
