@@ -1,0 +1,67 @@
+{
+    "window.zoomLevel": 0,
+    "editor.tabSize": 4,
+    "editor.smoothScrolling": true,
+    "vim.leader": ",",
+    "vim.handleKeys": {
+        "<C-n>": false
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        },
+        {
+            "before": ["J"],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": ["K"],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": [
+                "workbench.action.closeActiveEditor",
+            ]
+        },
+        {
+            "before": ["<leader>", "c", "<space>"],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": ["<space>"],
+            "after": ["<C-d>", "z", "z"]
+        },
+        {
+            "before": ["-"],
+            "after": ["<C-u>", "z", "z"]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "c", "<space>"],
+            "commands": [
+                "editor.action.commentLine",
+                "extension.vim_escape"
+            ]
+        }
+    ],
+    "workbench.startupEditor": "newUntitledFile"
+}
