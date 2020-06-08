@@ -20,7 +20,8 @@
     },
     {
         "key": "ctrl+f",
-        "command": "-actions.find"
+        "command": "actions.find",
+        "when": "!vim.active"
     },
     {
         "key": "tab",
