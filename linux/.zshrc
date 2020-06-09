@@ -2,7 +2,8 @@
 print -Pn "\e]1;%n@%m\a"
 
 # Initialize command prompt
-export PS1=$'\n'"%(!.%F{red}%n:.)%F{cyan}%~ %F{yellow}%(!.#.>)%f "
+source $HOME/.git-prompt.zsh
+PROMPT=$'\n''%(!.%F{red}%n:.)%F{cyan}%~$(git_super_status) %F{yellow}%(!.#.>)%f '
 
 # Custom command alias if exists
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
