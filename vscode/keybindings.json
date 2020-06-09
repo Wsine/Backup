@@ -1,0 +1,46 @@
+[
+    {
+        "key": "ctrl+shift+i",
+        "command": "toggleVim"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "cursorLeft",
+        "when": "vim.active && vim.mode == 'Insert'"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "cursorRight",
+        "when": "vim.active && vim.mode == 'Insert'"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "actions.find",
+        "when": "vim.active && vim.mode != 'Insert'"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "actions.find",
+        "when": "!vim.active"
+    },
+    {
+        "key": "tab",
+        "command": "acceptSelectedSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "shift+tab",
+        "command": "acceptSelectedSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "shift+tab",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    }
+]
