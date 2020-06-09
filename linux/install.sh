@@ -99,12 +99,18 @@ function download_tmux() {
     download ".tmux.conf"
 }
 
+function download_git() {
+    check_env "git"
+    download ".gitconfig"
+}
+
 function download_all() {
     download_bash
     download_tmux
     download_theme
     download_zsh
     download_vim
+    download_git
 }
 
 # check input and run
@@ -129,11 +135,14 @@ case $1 in
     theme)
         download_theme
         ;;
+    git)
+        download_git
+        ;;
     all)
         download_all
         ;;
     *)
-        echo "bash | zsh | tmux | vim | theme | all, at least one option is required."
+        echo "bash | zsh | tmux | vim | theme | git | all, at least one option is required."
         ;;
 esac
 
