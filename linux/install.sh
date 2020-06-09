@@ -32,29 +32,20 @@ function check_path() {
 }
 
 function download() {
+    check_env "wget"
     local filename=$1
     wget -q $GITHUB_DIR/$filename -O $OUTPUT_DIR/$filename
     info $filename
 }
 
 function download_bash() {
-    check_env "wget"
-
     download ".bashrc"
     download ".inputrc"
     download ".bash_aliases"
 }
 
 function download_zsh() {
-    check_env "wget"
-    check_env "git"
     check_env "zsh"
-
-    # install oh-my-zsh
-    if [ ! -d "$OUTPUT_DIR/.oh-my-zsh/" ]; then
-        git clone -q --depth=1 https://github.com/robbyrussell/oh-my-zsh.git \
-            $OUTPUT_DIR/.oh-my-zsh
-    fi
 
     download ".zshrc"
 
@@ -64,8 +55,6 @@ function download_zsh() {
 }
 
 function download_theme() {
-    check_env "wget"
-
     # install dark theme
     # theme website: http://mayccoll.github.io/Gogh/
     if [ ! -n "$SSH_CONNECTION" ]; then
@@ -75,7 +64,6 @@ function download_theme() {
 }
 
 function download_vim() {
-    check_env "wget"
     check_env "vim"
 
     # install vundle
@@ -93,7 +81,6 @@ function download_vim() {
 }
 
 function download_tmux() {
-    check_env "wget"
     check_env "tmux"
 
     download ".tmux.conf"
