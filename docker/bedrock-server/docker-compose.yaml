@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  bedrock-server:
+    container_name: bedrock-server
+    image: roemer/bedrock-server
+    volumes:
+      - ./config:/bedrock-server/config
+      - ./worlds:/bedrock-server/worlds
+    ports:
+      - 19132:19132/udp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
