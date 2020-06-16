@@ -1,0 +1,4 @@
+*
+!.gitignore
+!config
+!docker-compose.yaml.template
