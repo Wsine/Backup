@@ -1,33 +1,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+" => Vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
-call vundle#begin()
+Plug 'tpope/vim-sleuth' " better auto index
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+" Plug 'terryma/vim-smooth-scroll'
+Plug 'lucasicf/vim-smooth-scroll'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter'
+" Beautify plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Syntax plugins
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
+Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'tomlion/vim-solidity', {'for': 'solidity'}
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdtree'
-" Plugin 'terryma/vim-smooth-scroll'
-Plugin 'lucasicf/vim-smooth-scroll'
-Plugin 'vim-scripts/AutoComplPop'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'vim-python/python-syntax'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-endif
-filetype plugin indent on    " required
-" Put your non-Plugin stuff after this line
+" Initialize plugin system
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -73,7 +67,7 @@ set number
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -256,3 +250,4 @@ let g:cpp_concepts_highlight=1
 
 " Vim Python Highlight
 let python_highlight_all=1
+
