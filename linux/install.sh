@@ -66,10 +66,11 @@ function download_theme() {
 function download_vim() {
     check_env "vim"
 
-    # install vundle
-    if [ ! -d "$OUTPUT_DIR/.vim/bundle/Vundle.vim/" ]; then
-        git clone -q --depth=1 https://github.com/VundleVim/Vundle.vim.git  \
-            $OUTPUT_DIR/.vim/bundle/Vundle.vim
+    # install vim-plug
+    if [ ! -d "$OUTPUT_DIR/.vim/autoload/plug.vim" ]; then
+        check_path "$OUTPUT_DIR/.vim/autoload"
+        wget -q https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+             -O $OUTPUT_DIR/.vim/autoload/plug.vim
     fi
 
     check_path "$OUTPUT_DIR/.vim/colors"
@@ -77,7 +78,7 @@ function download_vim() {
     download ".vimrc"
 
     # install vim plugins
-    vim +PluginInstall +qall
+    vim +'PlugInstall --sync' +qall
 }
 
 function download_tmux() {
